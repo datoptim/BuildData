@@ -4308,3 +4308,22 @@ INSERT INTO dbo.City VALUES ('Bāmyān', 'Afghanistan')
 INSERT INTO dbo.City VALUES ('Lōgar', 'Afghanistan')
 INSERT INTO dbo.City VALUES ('Nūristān', 'Afghanistan')
 INSERT INTO dbo.City VALUES ('Ghōr', 'Afghanistan')
+
+
+
+
+/* SP: QUERY CITIES BY COUNTRY */
+CREATE PROC usp_ListCities @Country nvarchar(50)
+AS
+BEGIN
+
+	SELECT 
+		co.CountryName, 
+		ci.City
+	FROM dbo.Country co
+	INNER JOIN dbo.City ci 
+		ON co.CountryName = ci.CountryName
+	WHERE co.CountryName = @Country
+	ORDER BY 1, 2
+
+END
